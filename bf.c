@@ -1,9 +1,10 @@
 #include <stdio.h>
 #define TAPESIZE 30000
-char tape[TAPESIZE];
-char data[TAPESIZE];
+static char tape[TAPESIZE];
+static char data[TAPESIZE];
 
-char *backward(char *p) {
+char *backward(char *p)
+{
 	if (*p == ']')
 		while (*--p != '[')
 			if (*p == ']')
@@ -11,7 +12,8 @@ char *backward(char *p) {
 	return p;
 }
 
-char * forward(char *p) {
+char * forward(char *p)
+{
 	if (*p == '[')
 		while (*++p != ']')
 			if (*p == '[')
@@ -19,7 +21,8 @@ char * forward(char *p) {
 	return p;
 }
 
-int bf() {
+int bf()
+{
 	char *p = tape;
 	char *d = data;
 	while ( d < data + sizeof(data) )
@@ -42,7 +45,8 @@ int bf() {
 	}
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	int c;
 	char *p = tape;
 	FILE *ftape = fopen(argv[1], "r");
@@ -52,3 +56,4 @@ int main(int argc, char **argv) {
 	fclose(ftape);
 	return bf();
 }
+
